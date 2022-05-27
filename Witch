@@ -1,0 +1,50 @@
+package learningJava;
+
+public class Witch extends CharacterBluePrint{
+    int mana = 100;
+    @Override
+    public void setStrikesFromAfar(boolean strikesFromAfar) {
+        strikesFromAfar = true;
+    }
+
+    public Witch(int health, int mana,String name) {
+        super(health, 25, 30, 0, name, "Witch");
+        this.mana = mana;
+    }
+
+    public void healing(){
+        if(mana >= 100 && health >= 100){
+            System.out.println("No need for healing. Mana and health is on 100%.");
+        }else if((mana>=50 && mana < 100) || (health>=50 && health < 100)){
+            mana += 10;
+            health++;
+            System.out.println("You're health now is at "+ health + "%.");
+            System.out.println("You're mana now is at "+ mana + "%.");
+        }else{
+            mana+= 10;
+            health++;
+            speed = ((100*speed) - health)/100;
+            System.out.println("You're health now is at "+ health + "%.");
+            System.out.println("You're mana now is at "+ mana + "%.");
+        }
+    }
+    public void printStatistics(){
+        System.out.println(name + " is a Witch.");
+        System.out.println("Your character's health is " + health + ".");
+        System.out.println("Your character's mana is " + mana + ".");
+        System.out.println("Your character's strength is " + strength + ".");
+        System.out.println("Your character's speed is " + speed + ".");
+    }
+    public void fighting(){
+        if(health<10){
+            System.out.println("You are too wounded to fight, my lord.");
+        }else {
+            if (strikesFromAfar) {
+                attack();
+            }
+            block(monstersLevel);
+            attack();
+
+        }
+    }
+}
