@@ -1,0 +1,32 @@
+package learningJava;
+
+public class Archer extends CharacterBluePrint{
+    @Override
+    public void setStrikesFromAfar(boolean strikesFromAfar) {
+        strikesFromAfar = true;
+    }
+
+    public Archer(int health, String name) {
+        super(health, 30, 30, 0, name, "Archer");
+    }
+
+    public void printStatistics(){
+        System.out.println(name + " is a Archer.");
+        System.out.println("Your character's health is " + health + ".");
+        System.out.println("Your character's strength is " + strength + ".");
+        System.out.println("Your character's speed is " + speed + ".");
+    }
+    public void fighting(){
+        if(health<10){
+            System.out.println("You are too wounded to fight, my lord.");
+        }else {
+            if (strikesFromAfar) {
+                attack();
+            }
+            block(monstersLevel);
+            attack();
+
+        }
+    }
+}
+
