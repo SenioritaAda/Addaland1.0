@@ -1,0 +1,169 @@
+package learningJava;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int castChoice;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome, my lord! Here is your side adventure. ;)");
+        System.out.println("Let's call this land Adaland1.0");
+        System.out.println("And what you can do here is basically kill or die.");
+        System.out.println("Are you ready? If yes, press whatever key you want and let's start!");
+        scanner.nextLine();
+        System.out.println("--------------------------------------");
+        System.out.println("First of all, let's create your main general, my lord.");
+        System.out.println("You can choose from:");
+        System.out.println(" 1. Witch");
+        System.out.println(" 2. Warrior");
+        System.out.println(" 3. Thief");
+        System.out.println(" 4. Archer");
+        System.out.println("What is your choice, my lord?");
+        castChoice = scanner.nextInt();
+        System.out.println("And what would be the name of the new General?");
+        scanner.nextLine();
+        String generalName = scanner.nextLine();
+        int moveChoice = 0;
+        switch(castChoice){
+            case 1:
+                System.out.println("Good choice, my lord! Your main general is "+ generalName +" the Witch!");
+                Witch witchGeneral = new Witch(100, 100, generalName);
+                System.out.println("What would you like to do now, my lord?");
+                System.out.println("1 - Check your general's statistics");
+                System.out.println("2 - Go hunting monsters");
+                System.out.println("3 - Take a rest and heal");
+                System.out.println("4 - Exit this game for good");
+                while (!(witchGeneral.getHealth() <= 0) || !(witchGeneral.getMonstersHealth() <= 0)) {
+                    moveChoice = scanner.nextInt();
+                    switch(moveChoice){
+                        case 1:
+                            witchGeneral.printStatistics();
+                            break;
+                        case 2:
+                            witchGeneral.monsterAppears();
+                            witchGeneral.fighting();
+                            System.out.println("This monster was killed, but other are awaiting.");
+                            break;
+                        case 3:
+                            witchGeneral.healing();
+                            break;
+                        case 4:
+                            System.out.println("You will be missed, my lord.");
+                            System.exit(0);
+                    }
+                    System.out.println("What would you like to do next?");
+                }
+                if(witchGeneral.getHealth() <= 0){
+                    System.out.println("Your general was killed. Game over");
+                }else if(witchGeneral.getMonstersHealth() <= 0){
+                    System.out.println("You killed all the evil in Addaland1.0! Good job!");
+                }
+                break;
+            case 2:
+                System.out.println("Good choice, my lord! Your main general is "+ generalName +" the Warrior!");
+                Warrior warriorGeneral = new Warrior(100, generalName);
+                System.out.println("What would you like to do now, my lord?");
+                System.out.println("1 - Check your general's statistics");
+                System.out.println("2 - Go hunting monsters");
+                System.out.println("3 - Take a rest and heal");
+                System.out.println("4 - Exit this game for good");
+                while (!(warriorGeneral.getHealth() <= 0) || !(warriorGeneral.getMonstersHealth() <= 0)) {
+                    moveChoice = scanner.nextInt();
+                    switch(moveChoice){
+                        case 1:
+                            warriorGeneral.printStatistics();
+                            break;
+                        case 2:
+                            warriorGeneral.monsterAppears();
+                            warriorGeneral.fighting();
+                            System.out.println("This monster was killed, but other are awaiting.");
+                            break;
+                        case 3:
+                            warriorGeneral.healing();
+                            break;
+                        case 4:
+                            System.out.println("You will be missed, my lord.");
+                            System.exit(0);
+                    }
+                    System.out.println("What would you like to do next?");
+                }
+                if(warriorGeneral.getHealth() <= 0){
+                    System.out.println("Your general was killed. Game over");
+                }else if(warriorGeneral.getMonstersHealth() <= 0){
+                    System.out.println("You killed all the evil in Addaland1.0! Good job!");
+                }
+                break;
+            case 3:
+                System.out.println("Good choice, my lord! Your main general is "+ generalName +" the Thief!");
+                Thief thiefGeneral = new Thief(100, generalName);
+                System.out.println("What would you like to do now, my lord?");
+                System.out.println("1 - Check your general's statistics");
+                System.out.println("2 - Go hunting monsters");
+                System.out.println("3 - Take a rest and heal");
+                System.out.println("4 - Exit this game for good");
+                while (!(thiefGeneral.getHealth() <= 0) || !(thiefGeneral.getMonstersHealth() <= 0)) {
+                    moveChoice = scanner.nextInt();
+                    switch(moveChoice){
+                        case 1:
+                            thiefGeneral.printStatistics();
+                            break;
+                        case 2:
+                            thiefGeneral.monsterAppears();
+                            thiefGeneral.fighting();
+                            System.out.println("This monster was killed, but other are awaiting.");
+                            break;
+                        case 3:
+                            thiefGeneral.healing();
+                            break;
+                        case 4:
+                            System.out.println("You will be missed, my lord.");
+                            System.exit(0);
+                    }
+                    System.out.println("What would you like to do next?");
+                }
+                if(thiefGeneral.getHealth() <= 0){
+                    System.out.println("Your general was killed. Game over");
+                }else if(thiefGeneral.getMonstersHealth() <= 0){
+                    System.out.println("You killed all the evil in Addaland1.0! Good job!");
+                }
+                break;
+            case 4:
+                System.out.println("Good choice, my lord! Your main general is "+ generalName +" the Archer!");
+                Archer archerGeneral = new Archer(100, generalName);
+                System.out.println("What would you like to do now, my lord?");
+                System.out.println("1 - Check your general's statistics");
+                System.out.println("2 - Go hunting monsters");
+                System.out.println("3 - Take a rest and heal");
+                System.out.println("4 - Exit this game for good");
+                while (!(archerGeneral.getHealth() <= 0) || !(archerGeneral.getMonstersHealth() <= 0)) {
+                    moveChoice = scanner.nextInt();
+                    switch(moveChoice){
+                        case 1:
+                            archerGeneral.printStatistics();
+                            break;
+                        case 2:
+                            archerGeneral.monsterAppears();
+                            archerGeneral.fighting();
+                            System.out.println("This monster was killed, but other are awaiting.");
+                            break;
+                        case 3:
+                            archerGeneral.healing();
+                            break;
+                        case 4:
+                            System.out.println("You will be missed, my lord.");
+                            System.exit(0);
+                    }
+                        System.out.println("What would you like to do next?");
+                }
+                if(archerGeneral.getHealth() <= 0){
+                    System.out.println("Your general was killed. Game over");
+                }else if(archerGeneral.getMonstersHealth() <= 0){
+                    System.out.println("You killed all the evil in Addaland1.0! Good job!");
+                }
+                break;
+        }
+
+    }
+}
