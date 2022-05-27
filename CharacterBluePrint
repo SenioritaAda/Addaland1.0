@@ -1,0 +1,220 @@
+package learningJava;
+
+import java.util.Random;
+
+public class CharacterBluePrint {
+    int health = 100; // can be max 100;
+    int strength = 5;
+    int speed = 5;
+    int damageTaken = 0; // can be up to 10;
+    int damageGiven = strength + health + speed;
+    String name;
+    String cast; // can be witch, warrior, thief, archer, easyMonster, mediumMonster, stronMonster;
+    boolean strikesFromAfar;
+    int monstersHealth = 1000;
+    private int monstersDamageTaken = 0;
+    private int easyMonstersDamageGiven = 10;
+    private int mediumMonstersDamageGiven = 20;
+    private int strongMonstersDamageGiven = 30;
+    int monstersLevel; //1 - easy, 2 - medium, 3 - hard
+
+    public CharacterBluePrint(int health, int strength, int speed, int damageTaken,
+                              String name, String cast) {
+        this.health = health;
+        this.strength = strength;
+        this.speed = speed;
+        this.damageTaken = damageTaken;
+        this.damageGiven = damageGiven;
+        this.name = name;
+        this.cast = cast;
+        this.strikesFromAfar = strikesFromAfar;
+        this.monstersHealth = monstersHealth;
+        this.monstersDamageTaken = monstersDamageTaken;
+        this.easyMonstersDamageGiven = easyMonstersDamageGiven;
+        this.mediumMonstersDamageGiven = mediumMonstersDamageGiven;
+        this.strongMonstersDamageGiven = strongMonstersDamageGiven;
+        this.monstersLevel = monstersLevel;
+    }
+
+
+    public int getMonstersDamageTaken() {
+        return monstersDamageTaken;
+    }
+
+    public int getEasyMonstersDamageGiven() {
+        return easyMonstersDamageGiven;
+    }
+
+    public int getMediumMonstersDamageGiven() {
+        return mediumMonstersDamageGiven;
+    }
+
+    public int getStrongMonstersDamageGiven() {
+        return strongMonstersDamageGiven;
+    }
+    public int getHealth() {
+        return health;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int getDamageTaken() {
+        return damageTaken;
+    }
+
+    public int getDamageGiven() {
+        return damageGiven;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCast() {
+        return cast;
+    }
+
+    public boolean isStrikesFromAfar() {
+        return strikesFromAfar;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setDamageTaken(int damageTaken) {
+        this.damageTaken = damageTaken;
+    }
+
+    public void setDamageGiven(int damageGiven) {
+        this.damageGiven = damageGiven;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCast(String cast) {
+        this.cast = cast;
+    }
+
+    public void setStrikesFromAfar(boolean strikesFromAfar) {
+        this.strikesFromAfar = strikesFromAfar;
+    }
+
+    public int trainStrength(int strength){
+        return strength++;
+    }
+    public int trainSpeed(int speed){
+        return speed++;
+    }
+    public int getMonstersHealth() {
+        return monstersHealth;
+    }
+
+    public void healing(){
+        if(health == 100){
+            System.out.println("No need for healing. Health is on 100%.");
+        }else if(health>=50 && health < 100){
+            health++;
+            System.out.println("You're health now is at "+ health + "%.");
+        }else{
+            health++;
+            speed = ((100*speed) - health)/100;
+            System.out.println("You're health now is at "+ health + "%.");
+        }
+    }
+    public void fighting(int health, int damageTaken, int DamageGiven){
+        if(health<10){
+            System.out.println("You are too wounded to fight, my lord.");
+        }else {
+            if (strikesFromAfar) {
+                attack();
+            }
+                block(monstersLevel);
+                attack();
+
+        }
+    }
+    public void attack(){
+        monstersHealth = (monstersHealth - (strength + health + speed));
+    }
+    public void block(int monsterLevel){
+        if(monsterLevel == 1){
+            blockEasy();
+        }else if(monsterLevel ==2){
+            blockMedium();
+        }else{
+            blockHard();
+        }
+
+    }
+
+    public void blockMedium(){
+        Random random = new Random();
+        int x = random.nextInt(4);
+        if(x == 1){
+            System.out.println("Block was successful!");
+            speed+=10;
+        }else{
+            System.out.println("Block was unsuccessful!");
+            health = health - mediumMonstersDamageGiven;
+        }
+    }
+    public void blockEasy(){
+        Random random = new Random();
+        int x = random.nextInt(4);
+        if(x == 1){
+            System.out.println("Block was successful!");
+            speed+=5;
+        }else{
+            System.out.println("Block was unsuccessful!");
+            health = health - easyMonstersDamageGiven;
+        }
+    }
+    public void blockHard(){
+        Random random = new Random();
+        int x = random.nextInt(4);
+        if(x == 1){
+            System.out.println("Block was successful!");
+            speed+=15;
+        }else{
+            System.out.println("Block was unsuccessful!");
+            health = health - strongMonstersDamageGiven;
+        }
+    }
+    public void printStatistics(int health, int strength, int speed){
+        System.out.println("Your character's health is " + health + ".");
+        System.out.println("Your character's strength is " + strength + ".");
+        System.out.println("Your character's speed is " + speed + ".");
+    }
+
+    public void monsterAppears (){
+        Random random = new Random();
+        int x = random.nextInt(6);
+        if((x==1) || (x==2)){
+            System.out.println("Easy monster appears!");
+            monstersLevel = 1;
+        }else if((x==3) || (x==4)){
+            System.out.println("Medium monster appears!");
+            monstersLevel = 2;
+        }else{
+            System.out.println("Strong monster appears!");
+            monstersLevel = 3;
+        }
+    }
+}
