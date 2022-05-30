@@ -17,17 +17,5 @@ public class Warrior extends CharacterBluePrint{
             System.out.println("Your character's strength is " + strength + ".");
             System.out.println("Your character's speed is " + speed + ".");
         }
-        public void fighting(){
-            if(health<10){
-                System.out.println("You are too wounded to fight, my lord.");
-            }else {
-                if (strikesFromAfar) {
-                    attack();
-                }
-                block(monstersLevel);
-                attack();
-
-            }
-        }
 
 }
