@@ -138,10 +138,8 @@ public class CharacterBluePrint {
             System.out.println("You're health now is at "+ health + "%.");
         }
     }
-    public void fighting(int health, int damageTaken, int DamageGiven){
-        if(health<10){
-            System.out.println("You are too wounded to fight, my lord.");
-        }else {
+    public void fighting(){
+
             if (strikesFromAfar) {
                 attack();
             }
@@ -149,7 +147,6 @@ public class CharacterBluePrint {
                 attack();
 
         }
-    }
     public void attack(){
         monstersHealth = (monstersHealth - (strength + health + speed));
     }
